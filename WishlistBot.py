@@ -113,7 +113,7 @@ def on_message(message):
             
             embed=Embed(
                    color=discord.Color.green()   ,
-                   description=("**Trainer gesamt:**  %s \n**<:instinct:410759229473947649> Instinct:** %s \n**<:mystic:365202251691851786> Mystic:** %s \n**<:valor:410759232334462977> Valor:** %s \n\n**Bots:** %s  \n\nam %s" % (message.server.member_count, InstinctCount, MysticCount, ValorCount, BotCount , now))
+                   description=("**Trainer gesamt:**  %s \n**<:instinct:410759229473947649> Instinct:** %s \n**<:mystic:365202251691851786> Mystic:** %s \n**<:valor:410759232334462977> Valor:** %s \n\n**Bots:** %s (bananarama)  \n\nam %s" % (message.server.member_count, InstinctCount, MysticCount, ValorCount, BotCount , now))
                    
 
                 )
@@ -152,8 +152,7 @@ def on_message(message):
             
         #spawns
         elif message.content.startswith(prefix+'spawns') or message.content.startswith(prefix+'Spawns'):
-            s = open("spawns.txt","r")
-            yield from client.send_message(message.channel, embed=Embed(color=discord.Color.orange(), description=(s.read())))            
+            yield from client.send_message(message.channel, embed=Embed(color=discord.Color.orange(), description=('Hier findest du, was in den Spawn-Kanälen gemeldet wird: \nhttps://docs.google.com/spreadsheets/d/1ZvugC4gE72bQy2uBBiPO_WDCJX3-RHXI7qfc0N0Bcw8/edit?usp=sharing')))            
             s.close()
 
         #raids
