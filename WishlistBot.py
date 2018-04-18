@@ -176,6 +176,18 @@ def on_message(message):
             yield from client.send_message(message.author, embed=embed)
             yield from client.send_message(message.channel, "Ich habe dir eine PN geschickt " + message.author.name + " :wink:")
         
+        #meetup
+        elif message.content.startswith(prefix+'meetup') or message.content.startswith(prefix+'Meetup'):
+            meetup = discord.utils.get(message.server.roles, name="meetup")
+            if meetup in message.author.roles:
+                yield from client.remove_roles(message.author, meetup)
+                yield from client.send_message(message.channel,embed=Embed(color=discord.Color.green(), description=( "%s \nDu bist aus der Rolle ** %s ** *ausgetreten* und wirst ab jetzt *nicht mehr* benachrichtigt, wenn jemand eine wichtige Nachricht für das nächste Meetup sendet <:Wobbuffet:365242567312539659> " % (message.author.mention , meetup.name))))
+            else:
+                yield from client.add_roles(message.author, meetup)
+                yield from client.send_message(message.channel,embed=Embed(color=discord.Color.green(), description=( "%s \nDu bist der Rolle ** %s ** *beigetreten* und wirst ab jetzt *immer* benachrichtigt, wenn jemand eine wichtige Nachricht für das nächste Meetup sendet <:Wobbuffet:365242567312539659> " % (message.author.mention , meetup.name))))
+            
+        
+        
        #Errorcode
         else:
             yield from client.send_message(message.channel, embed=Embed(color=discord.Color.red(), description=("Dieser Befehl `%s` ist nicht gültig!" % invoke)))
